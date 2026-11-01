@@ -1,0 +1,178 @@
+Aim
+To write and deploy a Solidity smart contract to store student details using Structures, Arrays, 
+and Fallback Functions on the Ethereum blockchain and observe the transaction fee and gas values.
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract StudentData {
+
+    // Structure to store student details
+    struct Student {
+        uint id;
+        string name;
+        uint age;
+        string course;
+    }
+
+    // Array to store students
+    Student[] public students;
+
+    // Add student details
+    function addStudent(
+        uint _id,
+        string memory _name,
+        uint _age,
+        string memory _course
+    ) public {
+        students.push(
+            Student(_id, _name, _age, _course)
+        );
+    }
+
+    // Get total number of students
+    function getStudentCount() public view returns (uint) {
+        return students.length;
+    }
+
+    // Get student details using index
+    function getStudent(uint index)
+        public view returns (uint, string memory, uint, string memory)
+    {
+        require(index < students.length, "Invalid index");
+
+        Student memory s = students[index];
+
+        return (s.id, s.name, s.age, s.course);
+    }
+
+    // Fallback function
+    fallback() external payable {
+    }
+
+    // Receive Ether
+    receive() external payable {
+    }
+}
+
+
+
+Step-by-Step Procedure: Student Data Smart Contract Using Solidity
+Aim: To create a Solidity smart contract using Structures, Arrays, and Fallback Functions, 
+deploy it on the Ethereum Sepolia test network, and observe transaction fees and gas values.
+
+
+Step 1: Open Remix IDE
+1. Open Google Chrome.
+2. Visit https://remix.ethereum.org/
+3. Wait for Remix IDE to load.
+4. Open File Explorer from the left sidebar.
+
+Step 2: Create a Solidity File
+1. Open the contracts folder.
+2. Click on New File.
+3. Enter the filename StudentData.sol.
+4. Press Enter.
+
+Step 3: Write the Solidity Program
+1. Open StudentData.sol.
+2. Copy and paste the given Solidity program.
+3. Save the file using Ctrl + S (Windows) or Command + S (Mac).
+
+Step 4: Compile the Smart Contract
+1. Click on the Solidity Compiler icon.
+2. Select compiler version 0.8.20.
+3. Select StudentData.sol.
+4. Click Compile StudentData.sol.
+5. Wait for the successful compilation message.
+
+Step 5: Install and Open MetaMask
+1. Visit https://metamask.io/
+2. Install the MetaMask browser extension.
+3. Create a new wallet or import an existing wallet.
+4. Set your wallet password.
+5. Open MetaMask.
+
+Note: Never share your Secret Recovery Phrase or private key.
+Step 6: Select the Sepolia Test Network
+1. Open MetaMask.
+2. Enable test networks in settings if necessary.
+3. Click on the network selector.
+4. Select Sepolia.
+
+5. Copy your wallet address.
+Step 7: Get Sepolia Test ETH
+1. Open the Google Cloud Sepolia Faucet: https://cloud.google.com/application/web3/faucet/ethereum/sepolia
+2. Enter your wallet address.
+3. Complete the required verification.
+4. Request test ETH.
+5. Check your MetaMask balance.
+
+Step 8: Connect MetaMask with Remix IDE
+1. Return to Remix IDE.
+2. Click Deploy & Run Transactions.
+3. Under Environment, select Browser Extension or Injected Provider - MetaMask.
+4. MetaMask will display a connection request.
+5. Select your account.
+6. Click Connect.
+7. Verify that Remix is connected to the Sepolia network.
+
+Step 9: Deploy the Smart Contract
+1. Under Contract, select StudentData.
+2. Keep the constructor parameters empty.
+3. Click Deploy.
+4. MetaMask will display a transaction confirmation.
+5. Check the estimated gas fee.
+6. Click Confirm.
+7. Wait until the transaction is confirmed.
+8. The deployed contract will appear under Deployed Contracts.
+
+Step 10: Add Student Details
+1. Expand the deployed StudentData contract.
+2. Find the addStudent() function.
+3. Enter the following details:
+Parameter	Value
+_id	        101
+_name	    Vinayak
+_age	    21
+_course	    Computer Engineering
+
+4. Click the addStudent button.
+5. Confirm the transaction in MetaMask.
+6. Wait for transaction confirmation.
+Step 11: Retrieve Student Details
+1. Find the getStudentCount() function.
+2. Click the button to get the total number of students.
+3. The output will be 1.
+4. Find the getStudent() function.
+5. Enter index 0.
+6. Click the button.
+7. Observe the student details.
+Expected Output:
+101
+Vinayak
+21
+Computer Engineering
+
+
+Step 12: Execute the Fallback and Receive Functions
+1. The contract contains a fallback() function that executes when a call does not match any existing function.
+2. The receive() function executes when Ether is received with empty calldata.
+3. Both functions are declared payable, allowing them to receive Ether.
+
+Step 13: Observe Gas and Transaction Fees
+1. Open MetaMask.
+2. Go to the Activity section.
+3. Select the contract deployment transaction.
+4. Open transaction details.
+5. Observe the gas used and transaction fee.
+6. Repeat the same process for the addStudent() transaction.
+7. You can also verify transaction details using https://sepolia.etherscan.io/.
+Formula:
+
+Transaction Fee = Gas Used * Gas Price
+
+
+
+Step 14: Result
+Successfully created and deployed a StudentData smart contract on the Ethereum Sepolia test network using Solidity. Student details were stored and retrieved using Structures and Arrays. Fallback and Receive functions were implemented, and gas consumption and transaction fees were observed.
